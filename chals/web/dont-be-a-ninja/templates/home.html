@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don't be a ninja</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #FFF;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        nav a {
+            color: #FFF;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 24px;
+        }
+
+        .ninja-image {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+
+        .ninja-quote {
+            font-size: 24px;
+            margin: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #FFF;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>The Ninja Gallery</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Gallery</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    
+    <p class="ninja-quote">"Never put off until tomorrow what can be done today."</p>
+
+    <div style="flex: 1; gap: 2">
+      Your name: <input type="text" id="name" value="{{ get_ninja_name() }}">
+      <button onclick="handleClick()">Decide your ninja fate: </button> <br />
+      <span id="content"></span>
+    </div>
+    <br />
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/LqF3jbiSI5A?si=YzP9D4VYDfufFQAZ&amp;start=40" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <script>
+      function handleClick() {
+        // let's call the function on the server side to get a random ninja name
+        // this must be perfectly safe... right??
+        const response = fetch(`/ninja?name=${document.getElementById('name').value}&power=GREEEEEEN`).then((response) => {
+          response.text().then((data) => {
+            document.getElementById('content').textContent = data;
+          });
+        });
+      }
+    </script>
+
+    <footer>
+        &copy; 2023
+    </footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+name: "Code Review"
+author: Nitya & Pomona
+category: OSINT
+description: |-
+  Pinto Bean recently learned about computers! Can you find his first GitHub repository?
+  **author**: Nitya & Pomona
+value: 500
+type: dynamic
+tags:
+  - hard
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+flags:
+  - sigpwny{k3ep_y0ur_5ecre7_k3ys_off_g1thub}
+hints:
+  - You'll have to find a link to his GitHub account from his other social media...
+  - Did you find a big block of unintelligible characters? https://cyberchef.org/ could help you decode it. (Keep this in your back pocket for other CTFs too!)

@@ -1,0 +1,23 @@
+name: "2rd's Time The Charm"
+author: Anakin
+category: Crypto
+description: |-
+  Can you *even* imagine breaking such a cipher?
+
+  **author**: Anakin
+value: 500
+type: dynamic
+tags:
+  - medium
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+flags:
+  - sigpwny{tw0_1s_th3_0dd35t_pr1m3_0f_th3m_4ll}
+files:
+  - chal.py
+  - starter.py
+  - output.txt
+hints:
+  - Take a close look at `n`...

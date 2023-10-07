@@ -1,0 +1,16 @@
+name: "Distinguished Editor"
+author: Nitya & Pomona
+category: OSINT
+description: |-
+  Pinto Bean is a new Wikipedia editor. Who can blame him for being interested in his own page?
+  **author**: Nitya & Pomona
+value: 500
+type: dynamic
+tags:
+  - medium
+extra:
+  initial: 500
+  decay: 150
+  minimum: 50
+flags:
+  - sigpwny{d0nat3_t0_w1k1p3d1a_whil3_y0ure_h3re}

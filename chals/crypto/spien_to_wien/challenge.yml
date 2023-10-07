@@ -1,0 +1,22 @@
+name: "Spien to Wien"
+author: Sagnik
+category: Crypto
+description: |-
+  !!!Free Flag Giveaway!!! All you need to do is spien the wheel to wien the grand prize!
+
+  **author**: Sagnik (Quaternion)
+value: 500
+type: dynamic
+tags: 
+  - hard
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+flags:
+  - sigpwny{pls_h3lp_1_c4nt_st0p_sp1nn1ng}
+files:
+  - chal.py
+  - RSA.txt
+hints:
+  - Woah big public exponent! Surely we can [abuse that somehow](https://en.wikipedia.org/wiki/Wiener%27s_attack)

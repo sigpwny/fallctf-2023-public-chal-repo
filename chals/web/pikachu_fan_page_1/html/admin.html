@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page</title>
+<!--
+        _                                                __   ___                            _        ___    _                          _               _   _                     ___    _                               _         __   
+       (_)                                              / /  / _ \                          | |      / _ \  | |                        | |             | | | |                   / _ \  | |                             | |        \ \  
+  ___   _    __ _   _ __   __      __  _ __    _   _   | |  | (_) |           _ __    ___   | |__   | | | | | |_   ___            ___  | |__     __ _  | | | |           _ __   | | | | | |_            _ __     __ _  / __)  ___   | | 
+ / __| | |  / _` | | '_ \  \ \ /\ / / | '_ \  | | | | / /    \__, |          | '__|  / _ \  | '_ \  | | | | | __| / __|          / __| | '_ \   / _` | | | | |          | '_ \  | | | | | __|          | '_ \   / _` | \__ \ / __|   \ \
+ \__ \ | | | (_| | | |_) |  \ V  V /  | | | | | |_| | \ \      / /           | |    | (_) | | |_) | | |_| | | |_  \__ \          \__ \ | | | | | (_| | | | | |          | | | | | |_| | | |_           | |_) | | (_| | (   / \__ \   / /
+ |___/ |_|  \__, | | .__/    \_/\_/   |_| |_|  \__, |  | |    /_/            |_|     \___/  |_.__/   \___/   \__| |___/          |___/ |_| |_|  \__,_| |_| |_|          |_| |_|  \___/   \__|          | .__/   \__,_|  |_|  |___/  | | 
+             __/ | | |                          __/ |   \_\          ______                                              ______                                 ______                         ______  | |                         /_/  
+            |___/  |_|                         |___/                |______|                                            |______|                               |______|                       |______| |_|                               
+-->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h2 {
+            color: #e93866; /* Pikachu-themed color */
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #e93866; /* Pikachu-themed border color */
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #e93866; /* Pikachu-themed background color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        p#result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        img {
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pikachu Fan Page Admin Login</h2>
+        <img src="pikachu.png" alt="Pikachu" width="100">
+        <input type="password" id="password" placeholder="Enter Password">
+        <button onclick="authenticate()">Login</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function authenticate() {
+            const password = document.getElementById("password").value;
+
+            function confuser(confusion) {
+                return (confusion << 2 + 1 - 10) ^ 0x1337 + 0x123;
+            }
+
+            function confuzzler(conflation, confoundment) {
+                let confuzzlement = conflation | confoundment << 16;
+                confuzzlement = (((confuzzlement & 0xffff) * 0x5bd1e995) + ((((confuzzlement >>> 16) * 0x5bd1e995) & 0xffff) << 16));
+                confuzzlement ^= confuzzlement >>> 24;
+                confuzzlement = (((confuzzlement & 0xffff) * 0x5bd1e995) + ((((confuzzlement >>> 16) * 0x5bd1e995) & 0xffff) << 16));
+                return confuzzlement;
+            }
+
+            function confounder(conflation) {
+                while (conflation.length % 2 != 0) {
+                    conflation += "\x00";
+                }
+                const clarifier = [];
+                let clarification = conflation.length << 3;
+                while (clarification > 0) {
+                    clarifier.push(confuzzler(conflation.charCodeAt((clarification -= 8) >>> 3) << 3, conflation.charCodeAt(((clarification >>> 2) - 2) / 2) & 0xbff));
+                    clarification -= 0xab - 0xa3;
+                }
+                return clarifier;
+            }
+
+            const arrEq = (a, b) => a.length === b.length && a.every((v, i) => v === b[i]);
+
+            const clarity = [18589015185, 87457918842644, 24644425819073, 45176732451089, 27446148711181, 53806695662277, 3155514927104, 94790815812385, 64786397412435, 3422202134961, 13449305162530, 37832204240560, 83971431238790, 94655845646313, 54364008070221, 44508923477814];
+            if (arrEq(confounder(password), clarity)) {
+                document.getElementById("result").innerText = "Password is correct. Access granted!";
+            } else {
+                document.getElementById("result").innerText = "Incorrect password. Access denied.";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+name: "snake"
+author: Richard
+category: Rev
+description: |-
+  Snakes and ladders! Bit and bobs!
+
+  **author**: Richard
+value: 500
+type: dynamic
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+tags:
+  - beginner
+flags:
+  - sigpwny{b1T_Sh3N4n1GaN5}
+files:
+  - main.js

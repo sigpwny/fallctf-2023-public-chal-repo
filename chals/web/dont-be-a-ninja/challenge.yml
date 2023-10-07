@@ -1,0 +1,30 @@
+name: "don't be a ninja"
+author: Louis
+category: Web
+description: |-
+  Master Wu has reached out to you to become a ninja. He has given you a random test to see if you are worthy.
+  
+  Can you get the flag in "/flag.txt"?
+  
+  http://ninja.chal.fallctf.sigpwny.com:8010
+
+  **author**: Louis
+value: 500
+type: dynamic
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+tags:
+  - beginner
+hints:
+  - What is a server-side template? How can we inject our own template values when they're not handled properly?
+  - SSTI
+flags:
+  - sigpwny{dont_trust_the_names}
+files:
+  - main.py
+  - templating.py
+  - templates/home.html
+  - templates/ninja.template
+  - Dockerfile

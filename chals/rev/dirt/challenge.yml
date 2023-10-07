@@ -1,0 +1,22 @@
+name: "dirt"
+author: Richard
+category: Rev
+description: |-
+  Can you unlock the secrets within this jar of dirt?
+
+  Install java, then run with `java -jar Main.jar`
+
+  **author**: Richard
+value: 500
+type: dynamic
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+tags:
+  - beginner
+flags:
+  - sigpwny{ive_g0t_A_J4r_oF_D1rT}
+
+files:
+  - Main.jar

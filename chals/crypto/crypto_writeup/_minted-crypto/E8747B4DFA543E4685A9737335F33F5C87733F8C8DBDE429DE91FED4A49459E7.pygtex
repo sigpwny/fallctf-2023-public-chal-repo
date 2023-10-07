@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{message} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}sigpwny\PYGZdq{}}
+\PYG{n}{shift} \PYG{o}{=} \PYG{l+m+mi}{4}
+\PYG{n}{ciphertext} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}
+\PYG{k}{for} \PYG{n}{c} \PYG{o+ow}{in} \PYG{n}{message}\PYG{p}{:}           \PYG{c+c1}{\PYGZsh{} loop through our message}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n+nb}{ord}\PYG{p}{(}\PYG{n}{c}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{97}         \PYG{c+c1}{\PYGZsh{} get ASCII and subtract 97}
+    \PYG{n}{x} \PYG{o}{=} \PYG{p}{(}\PYG{n}{x} \PYG{o}{+} \PYG{l+m+mi}{4}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{26}        \PYG{c+c1}{\PYGZsh{} modular arithmetic!}
+    \PYG{n}{x} \PYG{o}{+=} \PYG{l+m+mi}{97}                 \PYG{c+c1}{\PYGZsh{} Add 97}
+    \PYG{n}{ciphertext} \PYG{o}{+=} \PYG{n+nb}{chr}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}    \PYG{c+c1}{\PYGZsh{} Convert back}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{ciphertext}\PYG{p}{)}           \PYG{c+c1}{\PYGZsh{} Prints wmktarc}
+\end{Verbatim}

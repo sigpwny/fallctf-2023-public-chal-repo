@@ -1,0 +1,20 @@
+name: "Pintoguessr"
+author: Nitya & Pomona
+category: OSINT
+description: |-
+  Pinto Bean decided to visit his old resting place, where his body is currently displayed. He left a glowing review online. Can you find it?
+  **author**: Nitya & Pomona
+value: 500
+type: dynamic
+tags:
+  - easy
+extra:
+  initial: 500
+  decay: 150
+  minimum: 50
+flags:
+  - sigpwny{s0uthcampu5}
+hints:
+  - Where is Pinto currently taxidermied?
+state:
+  hidden

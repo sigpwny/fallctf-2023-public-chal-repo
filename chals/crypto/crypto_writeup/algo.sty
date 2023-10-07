@@ -1,0 +1,88 @@
+% ----------------------------------------------------------------------
+%  Algorithm environment -- Normal text, with 2em indenting,
+%  surrounded by a box.  Really needs optional line numbering and
+%  a better comment macro.  But bold keywords make the baby
+%  Jesus cry, so if you want them, you're on your own.
+%
+%  From https://jeffe.cs.illinois.edu/pubs/latex.html 
+%  My own changes:
+%   Added optional line spacing param \begin{algo}[0.69pt]
+%
+%   Added line number version \begin{nalgo}[4.20pt]
+% ----------------------------------------------------------------------
+
+\def\begin@lgo[#1]{
+    \begin{minipage}{1in}\normalfont\renewcommand{\baselinestretch}{#1}\tiny\normalsize
+    \begin{tabbing}
+    \quad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\kill
+}
+\def\end@lgo{
+    \end{tabbing}
+    \end{minipage}
+}
+
+\newenvironment{algorithm}[1]{
+    \begin{tabular}{|l|}
+    \hline
+    \begin@lgo[#1]
+}{
+    \end@lgo
+    \\\hline
+    \end{tabular}
+}
+
+\newenvironment{algo}[1][1]{
+    \begin{center}
+    \small
+    \begin{algorithm}{#1}
+}{
+    \end{algorithm}
+    \end{center}
+}
+
+% ----------------------------------------------------------------------
+%  Added nalgo env with line numbering in addition to optional line spacing
+%  Usage:
+%   ONLY the lines with \label{} are counted *and* numbered
+%   Numbering resets every time you use the environment
+%   Also work with cleveref
+%   TODO: Make this nicer to use (but it looks nice at least)
+% ----------------------------------------------------------------------
+\usepackage{ntabbing}
+
+\def\begin@lgon[#1]{
+    \begin{minipage}{1in}\normalfont\renewcommand{\baselinestretch}{#1}\tiny\normalsize
+    \begin{ntabbing}\reset
+    \quad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\kill
+}
+\def\end@lgon{
+    \end{ntabbing}
+    \end{minipage}
+}
+
+\newenvironment{nalgorithm}[1]{
+    \begin{tabular}{|l|}
+    \hline
+    \begin@lgon[#1]
+}{
+    \end@lgon
+    \\\hline
+    \end{tabular}
+}
+
+\newenvironment{nalgo}[1][1]{
+    \begin{center}
+    \small
+    \begin{nalgorithm}{#1}
+}{
+    \end{nalgorithm}
+    \end{center}
+}
+
+% cref counters for nalgo
+\crefname{g@linecounter}{Line}{Lines}
+\creflabelformat{g@linecounter}{#2#1#3}
+
+% Meh.
+% TODO: I want a better comment macro
+\def\Comment#1{\quad\textsf{\textsl{$\langle\!\langle~$#1\/$~\rangle\!\rangle$}}}

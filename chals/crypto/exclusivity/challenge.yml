@@ -1,0 +1,26 @@
+name: "Exclusivity"
+author: Anakin
+category: Crypto
+description: |-
+  Oh brother I seem to have left a pair of plaintext and ciphertext lying around.
+  Hopefully no one will notice...
+
+  **author**: Anakin
+value: 500
+type: dynamic
+tags:
+  - beginner
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+flags:
+  - sigpwny{mfw_0ne_t1m3_p4d_wa5n't_0ne_t1me}
+files:
+  - chal.py
+  - starter.py
+  - p1
+  - c1
+  - c2
+hints:
+  - Think about how XOR, `x ^ y` is commutative and how stuff cancels out (get some pen and paper).

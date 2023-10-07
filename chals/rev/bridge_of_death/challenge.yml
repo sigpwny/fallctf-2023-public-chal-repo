@@ -1,0 +1,19 @@
+name: "Bridge of Death"
+author: kmh
+category: Rev
+description: |-
+  Answer my three questions to cross the Bridge of Death.
+
+  **author**: kmh
+value: 500
+type: dynamic
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+tags:
+  - medium
+flags:
+  - sigpwny{what_is_th3_a1r_sp33d_vel0city_of_an_unl4d3n_swa1low}
+files:
+  - bridge

@@ -1,0 +1,25 @@
+name: "Pwnydex"
+author: Minh
+category: Web
+description: |-
+  Apparently, the next generation of Pwnymon will be pay to win! I really want 
+  to see what they look like, but I don't have enough money to buy them all. Can 
+  you help me find the next Pwnymon?
+  
+  http://pwnydex.chal.fallctf.sigpwny.com:8003
+
+  **author**: Minh
+value: 500
+type: dynamic
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+tags:
+  - hard
+hints:
+  - It looks like SQL injection! 
+flags:
+  - sigpwny{the_complete_pwnydex}
+files:
+  - handout.zip

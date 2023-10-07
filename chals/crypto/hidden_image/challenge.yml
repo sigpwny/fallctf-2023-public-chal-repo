@@ -1,0 +1,24 @@
+name: "Hidden Image"
+author: Husnain
+category: Crypto
+description: |-
+  Wait this isn't a message.
+  How am I supposed to get my flag now...
+
+  **author**: Husnain
+value: 500
+type: dynamic
+tags:
+  - medium
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+flags:
+  - sigpwny{you_either_know_xor_you_dont}
+files:
+  - encrypt.py
+  - cipher.bin 
+hints:
+  - Similar to the "Exclusivity" challenge, do we know anything about XOR that we can use to get the original `flag.png` file?
+  - Do we know anything about the `flag.png` file that can help us get any information about the key?

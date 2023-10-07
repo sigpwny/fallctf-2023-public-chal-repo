@@ -1,0 +1,19 @@
+name: "CONTROL"
+author: kmh
+category: Rev
+description: |-
+  You are an agent working for KAOS, an international organization of evil. Can you break into CONTROL's [headquarters](https://www.youtube.com/watch?v=o2ObCoCm61s) and get the flag?
+
+  **author**: kmh
+value: 500
+type: dynamic
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+tags:
+  - medium
+flags:
+  - sigpwny{mis5i0n_acc0mpl1sh3d}
+files:
+  - control

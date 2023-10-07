@@ -1,0 +1,19 @@
+name: "time is not on your side"
+author: Richard
+category: Rev
+description: |-
+  Wow, this flag checker is quite slow!
+
+  **author**: Richard
+value: 500
+type: dynamic
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+tags:
+  - medium
+flags:
+  - sigpwny{c4Nt_UnD0_a_H4sH}
+files:
+  - main.py

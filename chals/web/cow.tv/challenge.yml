@@ -1,0 +1,30 @@
+name: "cow.tv"
+author: Pete
+category: Web
+description: |-
+  Man this watch party is sooooo boring.
+  Can you find something else for us to watch, and then get the flag in "/flag.txt"?
+  
+  http://cowtv.chal.fallctf.sigpwny.com:8007
+
+  Note: `cowsay` will not return anything if given a blank input.
+
+  **author**: Pete
+value: 500
+type: dynamic
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+tags:
+  - medium
+hints:
+  - Can you add any special characters that will cause it to error?
+  - You can use "&&" or ";" to run multiple commands together
+  - Look up "Command Injection" attacks for inspiration
+flags:
+  - sigpwny{well_that_ruined_the_watch_party}
+files:
+  - chal.py
+  - Dockerfile
+  - src/routes/+page.svelte

@@ -1,0 +1,26 @@
+name: "Pikachu Fan Page 6"
+author: Jake
+category: Web
+description: |-
+  I was browsing the interwebs when I came across this suspiciously brief Pikachu fan page.
+  Can you see if there are any secrets hidden here?
+
+  **Tip**: All of the flags are prefixed with the corresponding challenge number (eg.`sigpwny{6_FLAG}`)
+  
+  http://pikachu.chal.fallctf.sigpwny.com:8001/
+
+  Check out our [Web Hacking I](https://sigpwny.com/meetings/fa2023/2023-09-07/) meeting for some useful info!
+
+  **author**: Jake
+value: 500
+type: dynamic
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+tags:
+  - easy
+hints:
+  - There's something I can't quite see near pikachu.
+flags:
+  - sigpwny{6_h1dd3n_img_ftw!}

@@ -1,0 +1,19 @@
+name: "Forest"
+author: richard
+category: Rev
+description: |-
+  Some strange things hidden in this forest...
+
+  **author**: richard
+value: 500
+type: dynamic
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+tags:
+  - hard
+flags:
+  - sigpwny{th1s_f0r3st_1s_sl0w}
+files:
+  - main

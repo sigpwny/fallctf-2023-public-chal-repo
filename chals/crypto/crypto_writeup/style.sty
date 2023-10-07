@@ -1,0 +1,590 @@
+% =========================================================================
+% If you're going to do things, do it with style
+%
+% Various things stolen from https://jeffe.cs.illinois.edu/pubs/latex.html
+% Various more things stolen from I can't be bothered to write it all down
+% Some things modified, some things not
+% =========================================================================
+
+% -------------------------------------------------------------------------
+%  Fonts
+% -------------------------------------------------------------------------
+
+% I don't understand which one of these does what
+\usepackage[charter, cal=cmcal]{mathdesign}     % Math fonts for charter
+                                                % FIXME: get rid of these warnings
+\usepackage[scaled=.96, sups]{XCharter}         % I think this is the main font
+\usepackage{sourcesanspro}                      % Not sure what this does
+\usepackage{inconsolata}                        % \texttt font
+
+% mathdesign charter prod / coprod are far too wide. This fixes it
+\let\prod=\undefined
+\let\coprod=\undefined
+\DeclareSymbolFont{cmlargesymbols}{OMX}{cmex}{m}{n}
+\DeclareMathSymbol{\prod}{\mathop}{cmlargesymbols}{"51}
+\DeclareMathSymbol{\coprod}{\mathop}{cmlargesymbols}{"60}
+
+% Other font ideas to play with
+% https://mathweb.ucsd.edu/~msharpe/mathsamples.pdf
+
+% -------------------------------------------------------------------------
+%  Packages
+% -------------------------------------------------------------------------
+
+% ---- Lots of math stuff ----
+\let\circledS\undefined                     % Use circledS from amssymb
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{stmaryrd}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n} % stmaryrd doesn't have bold
+\usepackage{mathtools}
+\usepackage{physics}
+
+% ---- Random math utilities ----
+\usepackage{centernot}
+\usepackage{braket}
+\usepackage{xfrac}
+\usepackage{optidef}
+
+% ---- Formatting the page ----
+\usepackage[margin = 0.75in]{geometry}
+\usepackage[dvipsnames,usenames,cmyk]{xcolor}
+\usepackage{setspace}
+
+\usepackage{quiver} % this has to come after xcolor for now
+
+% ---- Formatting the title ----
+\usepackage{datetime2}
+
+% ---- Formatting the section titles ----
+\usepackage{titlesec}
+
+% ---- Formatting the text ----
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}                      % Do I notice a difference? Probably not
+\usepackage{indentfirst}                    % Honestly not sure why this isn't default behavior
+\usepackage[indent]{parskip}
+
+% ---- Floats and whatnot ----
+\usepackage{float}
+\usepackage{framed}
+\usepackage{graphicx}
+\usepackage{subcaption}
+
+% ---- Item stuff ----
+\usepackage{enumitem}
+\usepackage{listofitems}
+
+% ---- Standing on the shoulders of giants ----
+\usepackage[backend=biber, style=alphabetic]{biblatex}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=cyan,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+\usepackage{cleveref}
+
+% ---- Coding ----
+\usepackage{minted}
+\setminted{linenos=true}
+\renewcommand\theFancyVerbLine{\small\arabic{FancyVerbLine}}
+
+
+% -------------------------------------------------------------------------
+%  Formatting junk
+% -------------------------------------------------------------------------
+
+\setstretch{1.4}                                    % More line spacing
+\pdfstringdefDisableCommands{\let\boldmath\relax}   % allow \boldmath in section titles
+
+% ---- TITLE ----
+% TODO: Easy support for multiple authors
+\makeatletter
+\renewcommand\maketitle{
+\DTMsavenow{now}
+\date{Last Edited on \today\ at \DTMfetchhour{now}:\DTMfetchminute{now}}
+  \begin{framed}
+    \begin{center}
+      { \renewcommand{\arraystretch}{1.3}
+        \addtolength{\parskip}{-1.5em}
+          \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r}
+            \LARGE \@title  & \LARGE \@author   \\[-10pt]
+            \@date          &                   \\[-10pt]
+          \end{tabular*}
+        \addtolength{\parskip}{1.5em}}
+    \end{center}
+  \end{framed}
+}
+\makeatother
+
+
+% datetime setup
+\DTMsetup{datesep=/}
+\DTMsetdatestyle{mdyy}
+
+% ---- SECTION FORMATTING ----
+% TODO: Fix numbered versions
+
+\titleformat{\section}
+    {\large\bfseries}
+    {\thesection}{1ex}{}
+    []
+\titlespacing{\section}
+    {0pt}                           % left
+    {\parskip}                      % before
+    {0pt}                           % after
+
+\titleformat{\subsection}[runin]
+    {\normalfont\normalsize\bfseries}
+    {\thesubsection}{1ex}{}
+    []
+\titlespacing{\subsection}
+    {5pt}
+    {0.5ex plus 1ex minus .2ex}
+    {10pt}
+
+\titleformat{\subsubsection}[runin]
+    {\normalfont\normalsize\bfseries}
+    {\thesubsubsection}{1ex}{}
+    []
+\titlespacing{\subsubsection}
+    {10pt}
+    {0.5ex plus 1ex minus .2ex}
+    {10pt}
+
+% ---- THEOREM & LEMMA ENVIRONMENTS ----
+% TODO: unnumbered versions
+
+\declaretheoremstyle[
+    spaceabove=\topsep,
+    spacebelow=\topsep,
+    headindent=0pt,
+    headfont=\bfseries,
+    postheadspace=5pt plus 1pt minus 1pt,
+    headpunct=\(\colon\),
+    notefont=\bfseries,
+]{theorem}
+
+\declaretheorem[style=theorem, numbered=no, name=Definition]{defn}
+\declaretheorem[style=theorem, numbered=no, name=Example]{ex}
+\declaretheorem[style=theorem, numbered=no, name=Theorem]{thrm}
+\declaretheorem[style=theorem, numbered=no, name=Proposition]{prop}
+\declaretheorem[style=theorem, numbered=no, name=Lemma]{lem}
+\declaretheorem[style=theorem, numbered=no, name=Corollary]{cor}
+\declaretheorem[style=theorem, numbered=no, name=Exercise]{exercise}
+
+% TODO: Find a good way to typeset proofs without a QED
+\declaretheoremstyle[
+    spaceabove=\topsep,
+    spacebelow=12pt,
+    headindent=0pt,
+    headfont=\bfseries,
+    postheadspace=5pt plus 1pt minus 1pt,
+    headpunct=\(\colon\),
+    notefont=\bfseries,
+    qed=\qedsymbol,
+]{solution}
+\declaretheorem[style=solution, numbered=no, name=Proof]{pf}
+
+% ---- COLORS ---
+\definecolor{sigma@mainblue}{RGB}{75, 101, 243}
+\definecolor{sigma@alertred}{RGB}{224, 102, 103}
+\definecolor{sigma@highlightpink}{RGB}{255, 87, 235}
+
+% -------------------------------------------------------------------------
+%  Common abbreviations and words with accents
+% -------------------------------------------------------------------------
+
+% ---- LATIN ----
+\newcommand*\etal{et~al.}
+\newcommand*\ie{i.e.}
+\newcommand*\eg{e.g.}
+\newcommand*\vitae{vit\ae{}}
+\newcommand*\apriori{a~priori}
+\newcommand*\aposteriori{a~posteriori}  % I did not know this was a thing
+
+% ---- PROPER NAMES (because I'm lazy) ----
+\newcommand*\Benes{Bene\v{s}}                                   % ...network
+\newcommand*\Bezier{B\'ezier}                                   % ...spline/curve/surface
+\newcommand*\Bjorner{Bj\"orner}
+\newcommand*\Bochis{Bochi\c{s}}                                 % Daciana
+\newcommand*\Boruvka{Bor\.uvka}                                 % ...'s MST algorithm
+\newcommand*\Bragger{Br\"agger}
+\newcommand*\Bronnimann{Br\"onnimann}
+\newcommand*\Herve{Herv\'e}
+\newcommand*\Bruckner{Br\"uckner}
+\newcommand*\Caratheodory{Carath\'eodory}                       % Constantin
+\newcommand*\Cech{\v{C}ech}                                     % ...compactification
+\newcommand*\Chvatal{Chv\'atal}
+    \newcommand*\Vasek{Va\v{s}ek}
+        \newcommand*\Joao{Jo\~ao}                               % Compa
+\newcommand*\Cortes{Cort\'es}                                   % Carmen
+\newcommand*\Dujmovic{Dujmovi\'c}                               % Vida
+\newcommand*\Fredo{Fr\'edo}                                     % Durand
+\newcommand*\Erdos{Erd\H{o}s} \def\Pal{P\'al}
+\newcommand*\Frechet{Fr\'echet}                                 % ... distance
+\newcommand*\Furedi{F\"uredi} \def\Zoltan{Zolt\'an}
+\newcommand*\Grobner{Gr\"obner}                                 % ... basis
+\newcommand*\Grunbaum{Gr\"unbaum}                               % Branko
+\newcommand*\Hanoi{Hano\"\i}                                    % Tower of...
+\newcommand*\Jarnik{Jarn\a'{\i}k}                               % ...'s (`Prim's') MST algorithm
+\newcommand*\Komlos{Koml\'os}
+\newcommand*\Kovari{K\"ov\'ari}
+\newcommand*\Lovasz{Lov\'asz} \def\Laszlo{L\'aszl\'o}
+\newcommand*\Matousek{Matou\v{s}ek} \def\Jiri{Ji\v{r}\'\i}
+\newcommand*\Mnev{Mn\"ev}
+\newcommand*\Mobius{M\"obius}                                   % ... strip/transformation/function
+\newcommand*\Mucke{M\"ucke}                                     % Ernst
+\newcommand*\ODunliang{\'O'D\'unliang}
+\newcommand*\Oleinik{Ole\u{\i}nik}
+\newcommand*\Janos{J\'anos}                                     % Pach
+\newcommand*\Palasti{Pal\'asti}
+\newcommand*\Belen{Bel\'en}                                     % Palop
+\newcommand*\Petrovskii{Petrovski\u{\i}}
+\newcommand*\Pinar{P\i nar}                                     % Ali
+\newcommand*\Plucker{Pl\"ucker}                                 % ... coordinates
+\newcommand*\Poincare{Poincar\'e}                               % ... duality/halfplane
+\newcommand*\Gunter{G\"unter}                                   % Rote, Ziegler
+\newcommand*\Sacristan{Sacrist\'an}                             % Vera
+\newcommand*\Saskin{\v{S}a\v{s}kin}
+\newcommand*\Schomer{Sch\"omer}
+\newcommand*\Schonhardt{Sch\"onhardt}                           % ... polyhedron
+\newcommand*\Sos{S\'os}
+\newcommand*\Stackel{St\"ackel}                                 % Paul
+\newcommand*\Szekely{Sz\'ekely}
+\newcommand*\Szemeredi{Szemer\'edi}
+\newcommand*\Toth{T\'{o}th}                                     % Geza
+\newcommand*\Turan{Tur\'an}
+\newcommand*\Ungor{\"Ung\"or}                                   % Alper
+\newcommand*\Voronoi{Vorono\"\i}                                % ... diagram [for francophile pedants only]
+\newcommand*\Godel{G\"odel}                                     % The reason we don't know anything
+
+% -------------------------------------------------------------------------
+%  Math operators and symbols
+% -------------------------------------------------------------------------
+
+% ---- OPERATORS ----
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\stab}{stab}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\GF}{GF}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Emb}{Emb}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\red}{red}
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\mdeg}{multideg}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\fchar}{char}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\coeff}{coeff}
+\DeclareMathOperator{\lc}{\textsc{lc}}
+\DeclareMathOperator{\lm}{\textsc{lm}}
+\DeclareMathOperator{\lt}{\textsc{lt}}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\inte}{int}
+\DeclareMathOperator{\bdry}{bdry}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{support}
+\DeclareMathOperator{\rel}{rel}
+\DeclareMathOperator{\rad}{rad}
+
+\newcommand*\argmax{\operatornamewithlimits{arg\,max}}
+\newcommand*\argmin{\operatornamewithlimits{arg\,min}}
+
+% --- Cheap displaystyle operators ---
+\newcommand*\Frac[2]{{\dfrac{#1}{#2}}}
+\newcommand*\Sum{\sum\limits}
+\newcommand*\Prod{\prod\limits}
+\newcommand*\Bigcup{\bigcup\limits}
+\newcommand*\Bigcap{\bigcap\limits}
+\newcommand*\Bigvee{\bigvee\limits}
+\newcommand*\Bigwedge{\bigwedge\limits}
+\newcommand*\Bigtimes{\bigtimes\limits}
+
+\makeatletter
+\newcommand{\bigplus}{%
+  \DOTSB\mathop{\mathpalette\mattos@bigplus\relax}\slimits@
+}
+\newcommand\mattos@bigplus[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$#1\sum$}%
+    \resizebox{!}{0.9\dimexpr\ht\z@+\dp\z@}{\raisebox{\depth}{$\m@th#1+$}}%
+  }}%
+  \vphantom{\sum}%
+}
+\makeatother
+\newcommand*\Bigplus{\bigplus\limits}
+
+\newcommand*\Int{\int\limits}
+\newcommand*\Lim{\lim\limits}
+\newcommand*\Max{\max\limits}
+\newcommand*\Min{\min\limits}
+\newcommand*\Argmax{\argmax\limits}
+\newcommand*\Argmin{\argmin\limits}
+\newcommand*\Sup{\sup\limits}
+\newcommand*\Inf{\inf\limits}
+\newcommand*\Limsup{\limsup\limits}
+\newcommand*\Liminf{\liminf\limits}
+\newcommand*\Sfrac[2]{{\displaystyle\sfrac{#1}{#2}}}
+
+% ---- SYMBOLS ----
+\newcommand*\N{\mathbb{N}}
+\newcommand*\Z{\mathbb{Z}}
+\newcommand*\Q{\mathbb{Q}}
+\newcommand*\R{\mathbb{R}}
+\newcommand*\C{\mathbb{C}}
+\newcommand*\F{\mathbb{F}}
+\newcommand*\E{\mathbb{E}}
+
+\newcommand*\e{\varepsilon}
+
+\newcommand*\true{\textsc{True}}
+\newcommand*\false{\textsc{False}}
+
+% ---- RELATORS & ARROWS ----
+\newcommand*\defeq{\coloneqq}
+\newcommand*\into{\DOTSB\hookrightarrow}
+\newcommand*\onto{\DOTSB\twoheadrightarrow}
+\newcommand*\inonto{\DOTSB\lhook\joinrel\twoheadrightarrow}
+\newcommand*\from{\leftarrow}
+\newcommand*\tofrom{\leftrightarrow}
+\newcommand*\fromto{\tofrom}                                % This is mostly for my own amusement
+\newcommand*\sample{\overset{\$}{\from}}
+\newcommand*\notimplies{\centernot\implies}
+\newcommand*\acts{\curvearrowright}
+\newcommand*\normal{\trianglelefteq}
+\newcommand*\pluseq{\mathrel{+}=}
+\newcommand*\timeseq{\mathrel{*}=}
+\newcommand*\minuseq{\mathrel{-}=}
+\newcommand*\diveq{\mathrel{/}=}
+\newcommand*\child{\downarrow}
+\newcommand*\ancestor{\Uparrow}
+\newcommand*\contains{\supset}
+\newcommand*\containseq{\supseteq}
+\newcommand*\containsneq{\supsetneq}
+
+% -------------------------------------------------------------------------
+% Enclosures
+% -------------------------------------------------------------------------
+
+% ---- FUNCTIONS ----
+\newcommand*\floor[1]{%
+    \left\lfloor #1 \right\rfloor
+}
+
+\newcommand*\ceil[1]{%
+    \left\lceil #1 \right\rceil
+  }
+
+% pmod that scales for exponents
+\renewcommand{\pmod}[1]{~\pqty{\text{mod~}{#1}}}
+
+% ---- COMPLEXITY MACROS ----
+\newcommand*\bigO[1]{%                       % Constants no longer matter
+    O\kern-1.5pt\left(#1\right)
+}
+
+\newcommand*\littleo[1]{%
+    o\kern-1.5pt\left(#1\right)
+}
+
+\newcommand*\bigTheta[1]{%
+    \theta\kern-1.5pt\left(#1\right)
+}
+
+\newcommand*\bigOmega[1]{%
+    \Omega\kern-1.5pt\left(#1\right)
+}
+
+\newcommand*\bigOT[1]{%                      %logarithms no longer matter
+    \widetilde{O}\kern-1.5pt\left(#1\right)
+}
+
+\newcommand*\littleoT[1]{%
+    \tilde{o}\kern-1.5pt\left(#1\right)
+}
+
+\newcommand*\bigOStar[1]{%                   % polynomials no longer matter
+    {O^{*}}\kern-1.5pt\left(#1\right)
+}
+
+\newcommand*\littleoStar[1]{%
+    {o^{*}}\kern-1.5pt\left(#1\right)
+}
+
+% ---- PROBABILITY ----
+% I like \mathbb{P} for probability but go nuts, you can renew this
+\DeclareMathOperator{\probname}{\mathbb{P}}
+\DeclareMathOperator{\evname}{\mathbb{E}}
+
+% Probability and Expectation with ability for conditioning
+% Try \Prob{x | y} versus \Prob{x} and \EV{x | y} versus \EV{x}
+% Also for encodings / presentations
+% Source code stolen from braket.sty
+% TODO: cut down on code duplication
+{\catcode`\|=\active
+  \xdef\Prob{\protect\expandafter\noexpand\csname Prob \endcsname}
+  \expandafter\gdef\csname Prob \endcsname#1{\probname\kern-1pt\left(%
+     \ifx\SavedDoubleVert\relax \let\SavedDoubleVert\|\fi
+     \,{\let\|\SetDoubleVert
+     \mathcode`\|32768\let|\SetVert
+     #1}\,\right)}
+}
+
+{\catcode`\|=\active
+  \xdef\EV{\protect\expandafter\noexpand\csname EV \endcsname}
+  \expandafter\gdef\csname EV \endcsname#1{\evname\kern-1pt\left[%
+     \ifx\SavedDoubleVert\relax \let\SavedDoubleVert\|\fi
+     \,{\let\|\SetDoubleVert
+     \mathcode`\|32768\let|\SetVert
+     #1}\,\right]}
+}
+
+% Turing Machines only take strings, we should fix that eventually
+{\catcode`\|=\active
+  \xdef\encode{\protect\expandafter\noexpand\csname encode \endcsname}
+  \expandafter\gdef\csname encode \endcsname#1{\left\langle%
+     \ifx\SavedDoubleVert\relax \let\SavedDoubleVert\|\fi
+     \,{\let\|\SetDoubleVert
+     \mathcode`\|32768\let|\SetVert
+     #1}\,\right\rangle}
+}
+
+% ---- ALGEBRA ----
+
+% We use the same notation for finitely generated groups / ideals
+\newcommand*{\gen}{\encode}
+
+% magic for cycle notation
+% https://tex.stackexchange.com/questions/135868/permutation-cycle-notation
+% Can take optional replacement for ~ such as \cycle[\;]{1, 2, 3}
+\newcommand*\cycle[2][~]{%
+  \readlist\thecycle{#2}%
+  \left(\foreachitem\i\in\thecycle{\ifnum\icnt=1\else#1\fi\i}\right)%
+}
+
+
+% -------------------------------------------------------------------------
+% misc + various utilities + organize later
+% -------------------------------------------------------------------------
+
+% You get confused often
+\newcommand\quest[1]{ {\boldmath \color{BrickRed} $\langle \langle$ \textbf{#1} $\rangle \rangle$} }
+
+% From https://twitter.com/sarielhp/status/1659661458739806213
+\DeclareCiteCommand{\tcite}%
+ {\usebibmacro{prenote}}%
+ {\usebibmacro{citeindex}%
+    \usebibmacro{cite}}%
+ {\multicitedelim}%
+ {\usebibmacro{postnote}%
+}
+
+% Thicc sum and prod from @mniip#9046 on Discord
+% FIXME: These don't work (yet) with non-cm fonts
+\makeatletter
+\newsavebox{\thicc@box}
+\newlength{\thicc@width}
+\def\thicc@crop#1{%
+    \savebox\thicc@box{#1}%
+    \pdfxform\thicc@box\setbox\thicc@box\hbox{\pdfrefxform\pdflastxform}%
+    \usebox\thicc@box%
+}
+\def\thicc@style#1#2#3#4#5#6{%
+    \settowidth{\thicc@width}{$#1#2$}%
+    \thicc@crop{$#1#2$\kern\dimexpr\thicc@width*#3-\thicc@width\relax}%
+    \kern\dimexpr-\thicc@width*#6\relax%
+    \xleaders
+    \hbox{%
+        \thicc@crop{\kern\dimexpr\thicc@width*#5-\thicc@width*#3\relax$#1#2$\kern\dimexpr\thicc@width*#5-\thicc@width+\thicc@width*#4\relax}%
+    }\hfill%
+    \kern\dimexpr-\thicc@width*#6\relax%
+    \thicc@crop{\kern\dimexpr-\thicc@width*#4\relax$#1#2$}%
+}
+\def\thiccsymbol#1#2#3#4#5{%
+    \mathop{%
+        \mathchoice%
+            {\thicc@style\displaystyle{#1}{#2}{#3}{#4}{#5}}%
+            {\thicc@style\textstyle{#1}{#2}{#3}{#4}{#5}}%
+            {\thicc@style\scriptstyle{#1}{#2}{#3}{#4}{#5}}%
+            {\thicc@style\scriptscriptstyle{#1}{#2}{#3}{#4}{#5}}%
+    }\limits%
+}
+\def\thiccsum{\thiccsymbol{\sum}{1/2}{14/25}{0}{2/25}}
+\def\thiccprod{\thiccsymbol{\prod}{12/25}{13/25}{1/25}{1/25}}
+\makeatother
+
+% Wake up babe, new QED symbol dropped
+\newcommand\newqed[2][1in]{%
+    \fbox {
+        \begin{minipage}{#1}
+        #2
+        \end{minipage}
+    }
+}
+
+% Lowercase mathcal \mathcalb
+% From https://sarielhp.org/blog/2022/01/11/mathcal-for-small-letters/
+\DeclareFontFamily{U}{BOONDOX-calo}{\skewchar\font=45 }
+\DeclareFontShape{U}{BOONDOX-calo}{m}{n}{
+  <-> s*[1.05] BOONDOX-r-calo}{}
+\DeclareFontShape{U}{BOONDOX-calo}{b}{n}{
+  <-> s*[1.05] BOONDOX-b-calo}{}
+\DeclareMathAlphabet{\mathcalb}{U}{BOONDOX-calo}{m}{n}
+\SetMathAlphabet{\mathcalb}{bold}{U}{BOONDOX-calo}{b}{n}
+\DeclareMathAlphabet{\mathbcalb}{U}{BOONDOX-calo}{b}{n}
+
+% Symbols from TAOCP
+% ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/manfnt/manfnt.pdf
+\usepackage{manfnt}
+
+% ----------------------------------------------------------------------
+%  Dangerous bend environments, stolen from TeXbook and slightly
+%  massaged.
+%
+%  Invoke as \begin{[d]danger}...\end{[d]danger}.  The enclosed text
+%  is offset just like any other list (theorem, proof, etc.)  Puts
+%  sign[s] in front of first two lines of first paragraph, which are
+%  (supposedly) never split by a page boundary.  Does NOT shrink or
+%  otherwise modify the text.
+% ----------------------------------------------------------------------
+%  The dangerous bend signs are the correct size to match two lines of
+%  Computer Modern 9pt type.  I really ought to scale them up to
+%  fit whatever size we're using, but I won't.  Unfortunately, manfnt
+%  thinks it's a 10pt font, so if we want to match 11pt Computer
+%  Modern, we have to scale manfnt to 12.222222pt!  Thanks, Don.
+%
+%  TeX is a FuXing HaX.
+% ----------------------------------------------------------------------
+
+% Single danger
+\def\danger{\begin{trivlist}\item[]\noindent%
+\begingroup\hangindent=2.5pc\hangafter=-2\clubpenalty=10000%
+\def\par{\endgraf\endgroup}%
+\hbox to 0pt{\hskip-\hangindent\dbend\hfill}\ignorespaces}
+\def\enddanger{\end{trivlist}}
+
+% Double danger
+\def\ddanger{\begin{trivlist}\item[]\noindent%
+\begingroup\hangindent=4pc\hangafter=-2\clubpenalty=10000%
+\def\par{\endgraf\endgroup}%
+\hbox to 0pt{\hskip-\hangindent\dbend\kern2pt\dbend\hfill}\ignorespaces}
+\def\endddanger{\end{trivlist}}

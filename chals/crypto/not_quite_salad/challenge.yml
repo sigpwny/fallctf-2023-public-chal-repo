@@ -1,0 +1,23 @@
+name: "Not Quite Salad"
+author: Anakin
+category: Crypto
+description: |-
+  Everyone knows that rot13 isn't secure.
+  That's why I modified it!
+
+  **author**: Anakin
+value: 500
+type: dynamic
+tags:
+  - easy
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+flags:
+  - sigpwny{tbh_caeser_would_have_been_worse}
+files:
+  - chal.py
+  - output.txt
+hints:
+  - 2 unknowns and 2 plaintexts. Hmmmmmmmmmmmm

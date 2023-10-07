@@ -1,0 +1,17 @@
+name: "Beloved Squirrel"
+author: Nitya & Pomona
+category: OSINT
+description: |-
+  Our beloved piebald squirrel Pinto Bean has risen from the dead!
+  And he has started interacting with the SIGPwny club Instagram...
+  **author**: Nitya & Pomona
+value: 500
+type: dynamic
+tags:
+  - easy
+extra:
+  initial: 500
+  decay: 150
+  minimum: 50
+flags:
+  - sigpwny{f0und_p1nto}

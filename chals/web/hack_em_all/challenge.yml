@@ -1,0 +1,29 @@
+name: "Hack 'em All"
+author: Jake and Hassam
+category: Web
+description: |-
+  I found this cool site that lets me show an admin my name ideas.
+  Maybe the admin has some special information on their page.
+
+  http://hack-em-all.chal.fallctf.sigpwny.com:8002
+
+  **author**: Jake and Hassam
+value: 500
+type: dynamic
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+tags:
+  - medium
+hints:
+  - An admin will view the page when we send the name, can we exploit that?
+  - Try `<i>your name</i>`, does it look different? Maybe we can do something like this but with Javascript?
+  - Make sure to wait for the page to load before sending the body
+flags:
+  - sigpwny{g0tta_pwn_em_a11}
+files:
+  - server.js
+  - Dockerfile
+  - views/index.ejs
+  - views/view.ejs

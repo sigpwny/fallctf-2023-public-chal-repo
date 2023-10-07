@@ -1,0 +1,17 @@
+name: "Squirrel For Hire"
+author: Nitya & Pomona
+category: OSINT
+description: |-
+  Our friend Pinto Bean has been working as a consultant!
+  Can you find anything interesting on his LinkedIn?
+  **author**: Nitya & Pomona
+value: 500
+type: dynamic
+tags:
+  - medium
+extra:
+  initial: 500
+  decay: 150
+  minimum: 50
+flags:
+  - sigpwny{c@re3r_asp1rat10ns}

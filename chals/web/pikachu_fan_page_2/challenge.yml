@@ -1,0 +1,26 @@
+name: "Pikachu Fan Page 2"
+author: Jake
+category: Web
+description: |-
+  I was browsing the interwebs when I came across this suspiciously brief Pikachu fan page.
+  Can you see if there are any secrets hidden here?
+
+  **Tip**: All of the flags are prefixed with the corresponding challenge number (eg.`sigpwny{2_FLAG}`)
+  
+  http://pikachu.chal.fallctf.sigpwny.com:8001/
+
+  Check out our [Web Hacking I](https://sigpwny.com/meetings/fa2023/2023-09-07/) meeting for some useful info!
+
+  **author**: Jake
+value: 500
+type: dynamic
+extra:
+  initial: 500
+  decay: 150
+  minimum: 100
+tags:
+  - beginner
+hints:
+  - Where can we find logs from scripts?
+flags:
+  - sigpwny{2_j4vascr1pt_l0gging_t0_th3_cons0le}

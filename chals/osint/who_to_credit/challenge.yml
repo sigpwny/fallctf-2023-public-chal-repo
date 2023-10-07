@@ -1,0 +1,22 @@
+name: "Who to Credit?"
+author: Pomona
+category: OSINT
+description: |-
+  I found this really cool image online, but I have no idea who the author is.
+  Can you figure out who I should credit?
+
+  **author**: Pomona
+value: 500
+type: dynamic
+tags:
+  - easy
+extra:
+  initial: 500
+  decay: 150
+  minimum: 50
+flags:
+  - sigpwny{cr3dit_wher3_1t's_du3}
+files:
+  - flowers.jpeg
+hints:
+  - Research how metadata, like author and location, is stored in an image.

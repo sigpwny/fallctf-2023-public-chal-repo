@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gotta hack 'em all!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #pokemon-container {
+            margin: 20px auto;
+            max-width: 300px;
+        }
+
+        #pokemon-image {
+            width: 100%;
+            max-height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1><%- message %></h1> 
+    <div id="pokemon-container">
+        <img id="pokemon-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/<%= id %>.png" alt="Random Pokémon">
+    </div>
+    <p id="flag"><%- flag %></p>
+</body>
+</html>
